@@ -3,12 +3,15 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "react-native-passkeys": [
-        "../src/index"
-      ],
-      "react-native-passkeys/*": [
-        "../src/*"
+      "@/*": [
+        "./*"
       ]
     }
-  }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
 }
