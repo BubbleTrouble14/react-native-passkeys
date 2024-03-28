@@ -33,6 +33,8 @@ class PublicKeyCredentialCreationOptions: Record {
     @Field
     var attestation: String? = null
 
+    @Field
+    var extensions: PublicKeyCredentialCreationExtensions? = null
 }
 
 class AuthenticatorSelectionCriteria: Record {
@@ -79,6 +81,9 @@ class PublicKeyCredentialRequestOptions: Record {
 
     @Field
     var userVerification: String? = null
+
+    @Field
+    var extensions: PublicKeyCredentialCreationExtensions? = null
 }
 
 class PublicKeyCredentialRpEntity: Record {
@@ -219,6 +224,8 @@ class AuthenticationExtensionsClientOutputsJSON: Record {
     @Field
     var largeBlob: AuthenticationExtensionsLargeBlobOutputsJSON? = null
 
+    @Field
+    var prf: PrfExtensionInputs? = null
 }
 /**
 We convert this to `AuthenticationExtensionsLargeBlobOutputsJSON` instead of `AuthenticationExtensionsLargeBlobOutputs` for consistency
@@ -237,3 +244,21 @@ class AuthenticationExtensionsLargeBlobOutputsJSON: Record {
     @Field
     var written: Boolean? = null;
 };
+
+class PublicKeyCredentialCreationExtensions: Record {
+    @Field
+    var prf: PrfExtensionInputs? = null
+}
+
+class PrfExtensionInputs: Record {
+    @Field
+    var eval: PrfEvalInput? = null
+}
+
+class PrfEvalInput: Record {
+    @Field
+    var first: String = ""
+
+    @Field
+    var second: String? = null
+}

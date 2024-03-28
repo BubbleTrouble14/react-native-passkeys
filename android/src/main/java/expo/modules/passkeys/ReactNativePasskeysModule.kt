@@ -30,6 +30,7 @@ import expo.modules.kotlin.modules.ModuleDefinition
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.util.Log
 
 class ReactNativePasskeysModule : Module() {
 
@@ -52,8 +53,9 @@ class ReactNativePasskeysModule : Module() {
             val credentialManager =
                 CredentialManager.create(appContext.reactContext?.applicationContext!!)
             val json = Gson().toJson(request)
+            Log.d("PassKeys", json) // Log the JSON representation of the request
             val createPublicKeyCredentialRequest = CreatePublicKeyCredentialRequest(json)
-
+            Log.d("PassKeys", createPublicKeyCredentialRequest.requestJson) // Log the JSON representation of the request
 
             mainScope.launch {
                 try {
@@ -62,19 +64,22 @@ class ReactNativePasskeysModule : Module() {
                     }
                     val response =
                         result?.data?.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON")
+                    if(response != null) Log.d("PassKeys", response)
                     val createCredentialResponse =
                         Gson().fromJson(response, RegistrationResponseJSON::class.java)
                     promise.resolve(createCredentialResponse)
                 } catch (e: CreateCredentialException) {
-                    promise.reject("Passkey Create", getRegistrationException(e), e)
+                    promise.reject("PassKeys", getRegistrationException(e), e)
                 }
             }
         }
 
         AsyncFunction("get") { request: PublicKeyCredentialRequestOptions, promise: Promise ->
+            Log.d("PassKeys", "Get Request") // Log the JSON representation of the request
             val credentialManager =
                 CredentialManager.create(appContext.reactContext?.applicationContext!!)
             val json = Gson().toJson(request)
+            Log.d("PassKeys", json) // Log the JSON representation of the request
             val getCredentialRequest =
                 GetCredentialRequest(listOf(GetPublicKeyCredentialOption(json)))
 
@@ -85,11 +90,12 @@ class ReactNativePasskeysModule : Module() {
                     }
                     val response =
                         result?.credential?.data?.getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON")
+                    if(response != null) Log.d("PassKeys", response)
                     val createCredentialResponse =
                         Gson().fromJson(response, AuthenticationResponseJSON::class.java)
                     promise.resolve(createCredentialResponse)
                 } catch (e: GetCredentialException) {
-                    promise.reject("Passkey Get", getAuthenticationException(e), e)
+                    promise.reject("Passkeys", getAuthenticationException(e), e)
                 }
             }
         }
