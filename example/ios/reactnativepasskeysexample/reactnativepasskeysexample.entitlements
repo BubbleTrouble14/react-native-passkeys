@@ -6,8 +6,8 @@
     <string>development</string>
     <key>com.apple.developer.associated-domains</key>
     <array>
-      <string>applinks:react-native-passkeys.mintgarden.io</string>
-      <string>webcredentials:react-native-passkeys.mintgarden.io</string>
+      <string>applinks:mintgarden.io</string>
+      <string>webcredentials:mintgarden.io</string>
     </array>
   </dict>
 </plist>

@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>react-native-passkeys-example</string>
+    <string>badger-example</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -27,8 +27,8 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>react-native-passkeys</string>
-          <string>com.passkeyexample</string>
+          <string>badger</string>
+          <string>io.mintgarden.badger</string>
         </array>
       </dict>
     </array>

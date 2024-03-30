@@ -1,4 +1,4 @@
-package com.passkeyexample
+package io.mintgarden.badger
 
 import android.os.Build
 import android.os.Bundle

@@ -1,4 +1,4 @@
-rootProject.name = 'react-native-passkeys-example'
+rootProject.name = 'badger-example'
 
 dependencyResolutionManagement {
   versionCatalogs {

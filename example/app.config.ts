@@ -1,10 +1,11 @@
 import type { ExpoConfig } from "@expo/config-types";
 
-const hostname = process.env.EXPO_PUBLIC_HOSTNAME;
-if (!hostname) throw new Error("HOSTNAME environment variable must be set");
+// const hostname = process.env.EXPO_PUBLIC_HOSTNAME;
+// if (!hostname) throw new Error("HOSTNAME environment variable must be set");
 
-const scheme = "react-native-passkeys";
-const bundleIdentifier = "com.passkeyexample";
+const hostname = "mintgarden.io";
+const scheme = "badger";
+const bundleIdentifier = `${hostname.split(".").reverse().join(".")}.${scheme}`;
 
 const config = {
   name: `${scheme}-example`,
@@ -24,10 +25,7 @@ const config = {
   ios: {
     supportsTablet: true,
     bundleIdentifier,
-    associatedDomains: [
-      `applinks:${scheme}.${hostname}`,
-      `webcredentials:${scheme}.${hostname}`,
-    ],
+    associatedDomains: [`applinks:${hostname}`, `webcredentials:${hostname}`],
     infoPlist: { UIBackgroundModes: ["fetch", "remote-notification"] },
   },
   android: {
